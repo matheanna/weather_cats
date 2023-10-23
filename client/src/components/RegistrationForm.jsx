@@ -5,6 +5,7 @@ function RegistrationForm() {
   const [password, setPassword] = useState();
   const [invalidDataMessages, setInvalidDataMessages] = useState([]);
 
+
   function handleSubmit(event) {
     //TODO: check if all is valid
     event.preventDefault();
@@ -107,9 +108,11 @@ function RegistrationForm() {
         />
         <button type="submit">Register</button>
       </form>
+      <div id="invalidDataMessages">
         {invalidDataMessages && invalidDataMessages.map(m => 
-        <h3 key={m.id}>{m.message}</h3>)
-        }
+        <b key={m.id}>{m.message}</b>)
+      }
+      </div>
     </div>
   );
 }

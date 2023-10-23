@@ -14,3 +14,13 @@
 #registration form input{
     margin-bottom: 1%;
 }
+#registration #invalidDataMessages{
+    color: rgb(216, 68, 68);
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    padding: 1%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
