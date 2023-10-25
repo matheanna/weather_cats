@@ -1,86 +1,89 @@
 import { useState } from "react";
+import { useSet } from "@uidotdev/usehooks";
 import "../style/registrationForm.css";
 
-function RegistrationForm() {
-  const [password, setPassword] = useState();
-  const [invalidDataMessages, setInvalidDataMessages] = useState([]);
-
+function NewReg() {
+  const messages = useSet([]);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
 
   function handleSubmit(event) {
-    //TODO: check if all is valid
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const userData = Object.fromEntries(formData.entries());
-    console.log(userData);
+    if (isAllValid()) {
+      const formData = new FormData(event.target);
+      const userData = Object.fromEntries(formData.entries());
+      console.log(userData);
+    }
   }
 
-  //email validation-------------------------------------------------------------------
+  function isAllValid() {
+    console.log(isEmailValid, isPasswordValid, isUsernameValid);
+    return isEmailValid && isPasswordValid && isUsernameValid;
+  }
 
+  //email validation
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
-
   const handleEmailChange = (event) => {
     if (!isValidEmail(event.target.value)) {
-       if(invalidDataMessages.filter(m => m.message === "Email must be valid").length < 1){
-      setInvalidDataMessages([...invalidDataMessages, {id: 1, message: "Email must be valid"} ]);
-    }
+      messages.add("Email must be valid");
+      setIsEmailValid(false);
     } else {
-     setInvalidDataMessages(invalidDataMessages => invalidDataMessages.filter(m => !m.message.includes("Email")))
+      messages.delete("Email must be valid");
+      setIsEmailValid(true);
     }
   };
 
-  //password validation-----------------------------------------------------------------
+  //username validation
 
-  function pwHasUppercase(pw){
+  function handleNameChange(e) {
+    //TODO: check if username exists
+    setIsUsernameValid(true);
+  }
+
+  //password validation
+
+  function pwHasUpperCase(pw) {
     if (!pw.match(/[A-Z]/)) {
-        if(invalidDataMessages.filter(m => m.message === "Password must contain an uppercase letter").length < 1){
-      setInvalidDataMessages( invalidDataMessages => [...invalidDataMessages, {id: 2, message: "Password must contain an uppercase letter"}]);
+      messages.add("Password must contain an uppercase letter");
+      return false;
+    } else {
+      messages.delete("Password must contain an uppercase letter");
+      return true;
     }
-      return false; 
-    }
-    return true;
-  }
-  function pwHasLowerCase(pw){
-        if (!pw.match(/[a-z]/)){
-            if(invalidDataMessages.filter(m => m.message === "Password must contain an lowercase letter").length < 1){
-        setInvalidDataMessages( invalidDataMessages => [...invalidDataMessages, {id: 3, message: "Password must contain an lowercase letter"}])
-            }
-        return false; 
-    }
-    return true;
-  }
-  function pwHasNumber(pw){
-        if (!/\d/.test(pw)){
-            if(invalidDataMessages.filter(m => m.message === "Password must contain a number").length < 1){
-        setInvalidDataMessages( invalidDataMessages => [...invalidDataMessages, {id: 4, message: "Password must contain a number"}])       
-            }
-        return false; 
-    }
-    return true;
   }
 
-  const handlePasswordChange = (event) => {
+  function pwHasLowerCase(pw) {
+    if (!pw.match(/[a-z]/)) {
+      messages.add("Password must contain an lowercase letter");
+      return false;
+    } else {
+      messages.delete("Password must contain an lowercase letter");
+      return true;
+    }
+  }
+
+  function pwHasNumber(pw) {
+    if (!/\d/.test(pw)) {
+      messages.add("Password must contain a number");
+      return false;
+    } else {
+      messages.delete("Password must contain a number");
+      return true;
+    }
+  }
+
+  function handlePasswordChange(event) {
     const pw = event.target.value;
-    setPassword(pw);
-    if(pwHasUppercase(pw)){
-        setInvalidDataMessages(invalidDataMessages => invalidDataMessages.filter(m => m.message !== "Password must contain an uppercase letter"));
-    }
-    if(pwHasLowerCase(pw)){
-        setInvalidDataMessages(invalidDataMessages => invalidDataMessages.filter(m => m.message !== "Password must contain an lowercase letter"));
-    }
-    if(pwHasNumber(pw)){
-        setInvalidDataMessages(invalidDataMessages => invalidDataMessages.filter(m => m.message !== "Password must contain a number"));
-    }
-  };
-
-
-  function isMatching(e) {
-    if (e.target.value === password){
-        setInvalidDataMessages(invalidDataMessages => invalidDataMessages.filter(m => !m.message.includes("Passwords")));
-    }
-    else if(invalidDataMessages.filter(m => m.message === "Passwords must match").length < 1){
-        setInvalidDataMessages( invalidDataMessages => [...invalidDataMessages, {id: 5, message: "Passwords must match"}])
+    const pwHasUpper = pwHasUpperCase(pw);
+    const pwHasLower = pwHasLowerCase(pw);
+    const pwHasNum = pwHasNumber(pw);
+    if (pwHasUpper && pwHasLower && pwHasNum) {
+      setIsPasswordValid(true);
+    } else {
+      setIsPasswordValid(false);
     }
   }
 
@@ -94,26 +97,27 @@ function RegistrationForm() {
           name="email"
           onChange={handleEmailChange}
         />
-        <input type="text" placeholder="Username" name="username" />
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          onChange={handleNameChange}
+        />
         <input
           type="password"
           placeholder="Password"
           name="password"
           onChange={handlePasswordChange}
         />
-        <input
-          type="password"
-          placeholder="Confirm password"
-          onChange={isMatching}
-        />
         <button type="submit">Register</button>
+        <div id="invalidDataMessages">
+          {messages &&
+            Array.from(messages.values()).map((m) => (
+              <b key={Array.from(messages.values()).indexOf(m)}>{m}</b>
+            ))}
+        </div>
       </form>
-      <div id="invalidDataMessages">
-        {invalidDataMessages && invalidDataMessages.map(m => 
-        <b key={m.id}>{m.message}</b>)
-      }
-      </div>
     </div>
   );
 }
-export default RegistrationForm;
+export default NewReg;
