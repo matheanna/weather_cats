@@ -1,0 +1,16 @@
+#avatarCreator div{
+    position: relative;
+}
+#avatarCreator div img{
+    position: absolute;
+    left: 0;
+    top: 50px;
+}
+#avatarCreator div #cat{
+    left: 0;
+    top: 50px;
+}
+#avatarCreator div #glass{
+    left: 0;
+    top: 50px;
+}
