@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSet } from "@uidotdev/usehooks";
+import AvatarCreator from "./AvatarCreator.jsx";
 import "../style/registrationForm.css";
 
 function NewReg() {
@@ -7,14 +8,17 @@ function NewReg() {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
     if (isAllValid()) {
       const formData = new FormData(event.target);
       const userData = Object.fromEntries(formData.entries());
+      setSubmitted(true);
       console.log(userData);
     }
+    setSubmitted(true)
   }
 
   function isAllValid() {
@@ -89,8 +93,8 @@ function NewReg() {
 
   return (
     <div id="registration">
+      {!submitted && <form onSubmit={handleSubmit}>
       <h2>Create Account</h2>
-      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Email"
@@ -116,7 +120,15 @@ function NewReg() {
               <b key={Array.from(messages.values()).indexOf(m)}>{m}</b>
             ))}
         </div>
-      </form>
+      </form>}
+      {submitted && <AvatarCreator/>}
+      {/* <div id="progressBar">
+        <div className={submitted ? "circle done" : "circle notyet"}></div>
+        <div className={submitted ? "line done" : "line notyet"}></div>
+        <div className={submitted ? "circle done" : "circle notyet"}></div>
+        <div className={submitted ? "line done" : "line notyet"}></div>
+        <div className={submitted ? "circle done" : "circle notyet"}></div>
+      </div> */}
     </div>
   );
 }
