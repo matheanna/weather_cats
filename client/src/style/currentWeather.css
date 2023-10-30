@@ -1,0 +1,48 @@
+.currentWeather{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 15%;
+    margin-right: 15%;
+    }
+    .currentWeather div{
+        width: 270px;
+        align-items: center;
+        margin-top: 5%;
+    }
+    .current-main-data{
+        color: #0a156d;
+    }
+    .current-main-data div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .current-main-data div img{
+        margin-right: 10px;
+    }
+    .current-main-data h1{
+        font-size: 70px;
+        margin-right: 50px;
+        margin-left: 3px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #calendar{
+        height: 23px;
+        margin-left: 3px;
+    }
+    #placeholder{
+        height: 28px;
+    }
+    
+    .current-condition{
+        color: #0a156d;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .current-condition img{
+        width: 260px;
+    }
+    

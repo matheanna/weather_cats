@@ -1,0 +1,20 @@
+.App nav {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 3%;
+    background: rgb(123,188,218);
+    background: radial-gradient(circle, rgba(123,188,218,1) 15%, rgba(45,120,181,1) 81%);
+    color: #f0f5f8;
+    font-weight: bold;
+    max-height: 70px;
+    border-radius: 10px;
+  }
+  
+  body {
+    font-family: "Inter", sans-serif;
+    font-family: "Neuton", serif;
+    font-family: "Noto Sans", sans-serif;
+    background: rgb(45,120,181);
+    background: radial-gradient(circle, rgba(45,120,181,1) 15%, rgba(123,188,218,1) 81%);
+  }
