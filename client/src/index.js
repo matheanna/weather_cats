@@ -6,6 +6,7 @@ import './style/index.css';
 
 import App from './components/App';
 import RegistrationForm from './components/RegistrationForm';
+import CurrentWeather from './components/CurrentWeather';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegistrationForm />
-      }
+      },
+      {
+        path: "/current/:cityName",
+        element: <CurrentWeather />,
+      },
     ]
   },
 ]);
