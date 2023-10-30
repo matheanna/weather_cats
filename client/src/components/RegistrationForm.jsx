@@ -1,7 +1,23 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSet } from "@uidotdev/usehooks";
 import AvatarCreator from "./AvatarCreator.jsx";
 import "../style/registrationForm.css";
+
+async function registerUser(data) {
+  const res = await fetch("api/user/register", {
+    mode: "cors",
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const user = await res.json();
+  console.log(user);
+  return user;
+}
 
 function NewReg() {
   const messages = useSet([]);
@@ -9,16 +25,23 @@ function NewReg() {
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [userData, setUserData] = useState();
+  const navigate = useNavigate();
+
+  function handleRegistration(avatarData){
+   const allData = {...userData, ...avatarData};
+    registerUser(allData);
+    navigate("/");
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
     if (isAllValid()) {
       const formData = new FormData(event.target);
-      const userData = Object.fromEntries(formData.entries());
+      const user = Object.fromEntries(formData.entries());
+      setUserData(user);
       setSubmitted(true);
-      console.log(userData);
     }
-    setSubmitted(true)
   }
 
   function isAllValid() {
@@ -121,7 +144,7 @@ function NewReg() {
             ))}
         </div>
       </form>}
-      {submitted && <AvatarCreator/>}
+      {submitted && <AvatarCreator handleRegistration={handleRegistration}/>}
       {/* <div id="progressBar">
         <div className={submitted ? "circle done" : "circle notyet"}></div>
         <div className={submitted ? "line done" : "line notyet"}></div>
