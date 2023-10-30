@@ -1,17 +1,17 @@
 import { useState } from "react";
 import "../style/avatarCreator.css";
 
-import burmese from "../img/cats/burmese.png";
-import cymric from "../img/cats/cymric.png";
-import donskoy from "../img/cats/donskoy.png";
-import egyptianMau from "../img/cats/egyptian-mau-cat.png";
-import elf from "../img/cats/elf.png";
-import exoticShorthair from "../img/cats/exotic-shorthair.png";
-import himalayan from "../img/cats/himalayan-cat.png";
-import manx from "../img/cats/manx.png";
-import siamese from "../img/cats/siamese.png";
-import sphinx from "../img/cats/sphinx.png";
-import tortoiseshell from "../img/cats/tortoiseshell.png";
+import cat1 from "../img/cats/burmese.png";
+import cat2 from "../img/cats/cymric.png";
+import cat3 from "../img/cats/donskoy.png";
+import cat4 from "../img/cats/egyptian-mau-cat.png";
+import cat5 from "../img/cats/elf.png";
+import cat6 from "../img/cats/exotic-shorthair.png";
+import cat7 from "../img/cats/himalayan-cat.png";
+import cat8 from "../img/cats/manx.png";
+import cat9 from "../img/cats/siamese.png";
+import cat10 from "../img/cats/sphinx.png";
+import cat11 from "../img/cats/tortoiseshell.png";
 
 import hat1 from "../img/hats/hat1.png";
 import hat2 from "../img/hats/hat2.png";
@@ -35,20 +35,8 @@ import bg3 from "../img/backgrounds/bg3.png";
 import bg4 from "../img/backgrounds/bg4.png";
 import bg5 from "../img/backgrounds/bg5.png";
 
-export default function AvatarCreator() {
-  const catArr = [
-    burmese,
-    cymric,
-    donskoy,
-    egyptianMau,
-    elf,
-    exoticShorthair,
-    himalayan,
-    manx,
-    siamese,
-    sphinx,
-    tortoiseshell,
-  ];
+export default function AvatarCreator({handleRegistration}) {
+  const catArr = [cat1,cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10, cat11];
   const hats = [hat1, hat2, hat3, hat4, hat5, hat6, hat7, bow, earring];
   const glasses = [glass2, glass3, glass4, glass5, glass6];
   const backgrounds = [bg1, bg2, bg3, bg4, bg5];
@@ -57,14 +45,15 @@ export default function AvatarCreator() {
   const [glassNum, setGlassNum] = useState(0);
   const [bgNum, setBgNum] = useState(0);
   const [avatar, setAvatar] = useState({
-    bg: bg1,
+    bg: "bg1",
     cat: "burnemese",
     hat: "hat1",
     glass: "glass2",
   });
 
   function handleSave() {
-    console.log(avatar);
+    console.log(avatar)
+    handleRegistration(avatar);
   }
 
   function handleBG(dir) {
@@ -73,7 +62,7 @@ export default function AvatarCreator() {
     else setBgNum(bgNum + dir);
   }
   function handleCat(dir) {
-    //setAvatar({...avatar, cat: })
+    setAvatar({...avatar, cat: "cat" + (catNum + 2).toString()});
     if (catNum + 1 >= catArr.length) setCatNum(0);
     else setCatNum(catNum + dir);
   }
@@ -93,14 +82,9 @@ export default function AvatarCreator() {
     <div id="avatarCreator">
       <h2>Create your avatar!</h2>
       <button onClick={() => handleHat(1)}>next hat</button>
-      <button onClick={() => handleHat(-1)}>prev hat</button>
       <button onClick={() => handleCat(1)}>next cat</button>
-      <button onClick={() => handleCat(-1)}>prev cat</button>
       <button onClick={() => handleGlasses(1)}>next glass</button>
-      <button onClick={() => handleGlasses(-1)}>prev glass</button>
       <button onClick={() => handleBG(1)}>next bg</button>
-      <button onClick={() => handleBG(-1)}>prev bg</button>
-
       <div id="bgs">
         <img src={backgrounds[bgNum]} alt="bg" id="bg" />
       </div>
