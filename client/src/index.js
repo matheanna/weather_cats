@@ -5,11 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import './style/index.css';
 
 import App from './components/App';
+import RegistrationForm from './components/RegistrationForm';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
+    children: [
+      {
+        path: "/register",
+        element: <RegistrationForm />
+      }
+    ]
   },
 ]);
 

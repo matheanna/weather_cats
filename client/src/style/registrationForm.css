@@ -1,0 +1,62 @@
+#registration{
+    align-items: center;
+}
+#registration form{
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    padding: 2%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#registration form input{
+    margin-bottom: 1%;
+}
+#registration #invalidDataMessages{
+    color: rgb(216, 68, 68);
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#progressBar{
+    display: flex;
+    flex-direction: row;
+    /* position: relative; */
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#progressBar .circle.done{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: green;
+}
+#progressBar .circle.notyet{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(26, 37, 111);
+}
+#progressBar .line.done{
+    /* position: absolute; */
+    height: 10px;
+    width: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: green;
+}
+#progressBar .line.notyet{
+    /* position: absolute; */
+    height: 10px;
+    width: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgb(26, 37, 111);
+}
