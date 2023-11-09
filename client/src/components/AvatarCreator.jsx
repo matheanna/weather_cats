@@ -20,14 +20,15 @@ import hat4 from "../img/hats/hat4.png";
 import hat5 from "../img/hats/hat5.png";
 import hat6 from "../img/hats/hat6.png";
 import hat7 from "../img/hats/hat7.png";
-import bow from "../img/hats/bow.png";
-import earring from "../img/hats/earring.png";
+import hat8 from "../img/hats/bow.png";
+import hat9 from "../img/hats/earring.png";
 
 import glass2 from "../img/glasses/glass2.png";
 import glass3 from "../img/glasses/glass3.png";
 import glass4 from "../img/glasses/glass4.png";
 import glass5 from "../img/glasses/glass5.png";
 import glass6 from "../img/glasses/glass6.png";
+import glass7 from "../img/empty.png";
 
 import bg1 from "../img/backgrounds/bg1.png";
 import bg2 from "../img/backgrounds/bg2.png";
@@ -35,10 +36,11 @@ import bg3 from "../img/backgrounds/bg3.png";
 import bg4 from "../img/backgrounds/bg4.png";
 import bg5 from "../img/backgrounds/bg5.png";
 
+
 export default function AvatarCreator({handleRegistration}) {
   const catArr = [cat1,cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10, cat11];
-  const hats = [hat1, hat2, hat3, hat4, hat5, hat6, hat7, bow, earring];
-  const glasses = [glass2, glass3, glass4, glass5, glass6];
+  const hats = [hat1, hat2, hat3, hat4, hat5, hat6, hat7, hat8, hat9];
+  const glasses = [glass2, glass3, glass4, glass5, glass6, glass7];
   const backgrounds = [bg1, bg2, bg3, bg4, bg5];
   const [hatNum, setHatNum] = useState(0);
   const [catNum, setCatNum] = useState(0);
@@ -52,7 +54,6 @@ export default function AvatarCreator({handleRegistration}) {
   });
 
   function handleSave() {
-    console.log(avatar)
     handleRegistration(avatar);
   }
 
@@ -81,10 +82,13 @@ export default function AvatarCreator({handleRegistration}) {
   return (
     <div id="avatarCreator">
       <h2>Create your avatar!</h2>
+      <div className="avatarCreator-btns">
       <button onClick={() => handleHat(1)}>next hat</button>
       <button onClick={() => handleCat(1)}>next cat</button>
       <button onClick={() => handleGlasses(1)}>next glass</button>
       <button onClick={() => handleBG(1)}>next bg</button>
+      </div>
+      <div className="avatar-container">
       <div id="bgs">
         <img src={backgrounds[bgNum]} alt="bg" id="bg" />
       </div>
@@ -97,8 +101,9 @@ export default function AvatarCreator({handleRegistration}) {
       <div id="glasses">
         <img src={glasses[glassNum]} alt="glass" id="glass" />
       </div>
+      </div>
 
-      <button onClick={handleSave}>Save</button>
+      <button id="saveAvatar-btn" onClick={handleSave}>Save</button>
     </div>
   );
 }
