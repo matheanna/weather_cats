@@ -1,20 +1,5 @@
-.searchbar {
-    height: 30px;
-    width: 200px;
-    margin-top: 16px;
-    background-color: #f0f5f8;
-    /* background-image: url("../style/img/inputBG.png"); */
-    background-size: 100%;
-    border-color: #205b9e;
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 2px;
-    padding-left: 5px;
-    font-weight: bold;
-    font-size: 1em;
-    color: #0a156d;
-  }
   .search-cityname {
+    position: fixed;
     min-height: 30px;
     width: 200px;
     margin: 0;
@@ -32,7 +17,4 @@
   .search-cityname:hover {
     cursor: pointer;
     background-color: #d3dbe1;
-  }
-  ::placeholder {
-    color: #123480;
   }
