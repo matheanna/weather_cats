@@ -3,21 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useSet } from "@uidotdev/usehooks";
 import AvatarCreator from "./AvatarCreator.jsx";
 import "../style/registrationForm.css";
+import cat1 from "../img/persian-cat.png";
+import { register, setAuthToken } from "../register.js";
 
-async function registerUser(data) {
-  const res = await fetch("api/user/register", {
-    mode: "cors",
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  const user = await res.json();
-  console.log(user);
-  return user;
-}
 
 function NewReg() {
   const messages = useSet([]);
@@ -27,6 +15,22 @@ function NewReg() {
   const [submitted, setSubmitted] = useState(false);
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
+  
+  const saveToken = (token) => {
+    window.localStorage.setItem("auth_token", token);
+  };
+  
+  function registerUser(data){
+    register(data)
+    .then((response) => {
+      saveToken(response.token);
+      setAuthToken(response.token);
+    })
+    .catch((error) => {
+    //  navigate("/error")
+    console.log(error);
+    });
+  }
 
   function handleRegistration(avatarData){
    const allData = {...userData, ...avatarData};
@@ -113,11 +117,14 @@ function NewReg() {
       setIsPasswordValid(false);
     }
   }
-
+  
   return (
     <div id="registration">
       {!submitted && <form onSubmit={handleSubmit}>
-      <h2>Create Account</h2>
+        <div id="registration-title"> 
+      <h1>Create Account</h1>
+      <img src={cat1} alt="cat" />
+        </div>
         <input
           type="text"
           placeholder="Email"
@@ -136,7 +143,7 @@ function NewReg() {
           name="password"
           onChange={handlePasswordChange}
         />
-        <button type="submit">Register</button>
+        <button type="submit">Next</button>
         <div id="invalidDataMessages">
           {messages &&
             Array.from(messages.values()).map((m) => (
@@ -145,13 +152,6 @@ function NewReg() {
         </div>
       </form>}
       {submitted && <AvatarCreator handleRegistration={handleRegistration}/>}
-      {/* <div id="progressBar">
-        <div className={submitted ? "circle done" : "circle notyet"}></div>
-        <div className={submitted ? "line done" : "line notyet"}></div>
-        <div className={submitted ? "circle done" : "circle notyet"}></div>
-        <div className={submitted ? "line done" : "line notyet"}></div>
-        <div className={submitted ? "circle done" : "circle notyet"}></div>
-      </div> */}
     </div>
   );
 }

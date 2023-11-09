@@ -1,8 +1,10 @@
 #registration{
     align-items: center;
+    text-align: center;
+    margin-top: 3%;
 }
 #registration form{
-    background-color: pink;
+    background-color: #a0c4ff;
     display: flex;
     flex-direction: column;
     width: 35%;
@@ -15,48 +17,28 @@
     margin-bottom: 1%;
 }
 #registration #invalidDataMessages{
-    color: rgb(216, 68, 68);
+    text-align: left;
+    color: #be392b;
     display: flex;
     flex-direction: column;
     padding: 1%;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
 }
-
-#progressBar{
+#registration-title{
     display: flex;
-    flex-direction: row;
-    /* position: relative; */
-    width: 35%;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: space-between;
+    margin-bottom: -5px;
 }
-#progressBar .circle.done{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: green;
+img{
+    width: 100px;
+    height: 100px;
+    left: 60%;
+    top: 160px;
 }
-#progressBar .circle.notyet{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgb(26, 37, 111);
-}
-#progressBar .line.done{
-    /* position: absolute; */
-    height: 10px;
-    width: 40px;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: green;
-}
-#progressBar .line.notyet{
-    /* position: absolute; */
-    height: 10px;
-    width: 40px;
-    margin-top: auto;
-    margin-bottom: auto;
-    background-color: rgb(26, 37, 111);
+#registration button{
+width: 30%;
+align-self: center;
 }

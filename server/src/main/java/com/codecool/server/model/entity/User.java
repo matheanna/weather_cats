@@ -1,6 +1,5 @@
 package com.codecool.server.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +10,6 @@ import lombok.*;
 @Getter
 @Setter
 public class User {
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
