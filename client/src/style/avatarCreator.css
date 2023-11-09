@@ -1,16 +1,43 @@
-#avatarCreator div{
-    position: relative;
-}
 #avatarCreator div img{
     position: absolute;
-    left: 0;
     top: 50px;
+    width: 400px;
+    height: 400px;
 }
 #avatarCreator div #cat{
-    left: 0;
     top: 50px;
 }
 #avatarCreator div #glass{
-    left: 0;
     top: 50px;
+}
+
+#avatarCreator{
+    background-color: var(--dreamy);
+    border-radius: 30px;
+    padding: 1%;
+    width: 50%;
+    margin: 0 auto;
+    height: 500px;
+}
+.avatarCreator-btns{
+    margin-left: 50%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+.avatarCreator-btns button{
+    margin: 1%;
+}
+.avatar-container{
+    left: 25%;
+    position: absolute;
+    top: 22%;
+}
+#bgs img{
+    border-radius: 30px;
+}
+#saveAvatar-btn{
+    margin-top: 21%;
+    margin-left: 50%;
+    position: relative;
 }
