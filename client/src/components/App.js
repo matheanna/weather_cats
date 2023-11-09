@@ -1,16 +1,19 @@
 import { Outlet } from "react-router-dom";
 import Autocomplete from "./Autocomplete";
-import '../style/app.css';
+import "../style/app.css";
+import Sidebar from "./Sidebar";
 
 function App() {
 
   return (
     <div className="App">
       <nav>
-        <h2 onClick={() => window.location.href = "/"}>Weather Cats</h2>
-        <button onClick={() => window.location.href = "/register"}>Register</button>
+        <div>
+          <h2 onClick={() => (window.location.href = "/")}>WeatherCats</h2>
+        </div>
         <Autocomplete />
       </nav>
+      <Sidebar />
       <Outlet />
     </div>
   );
