@@ -1,20 +1,87 @@
-.App nav {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 3%;
-    padding-right: 3%;
-    background: rgb(123,188,218);
-    background: radial-gradient(circle, rgba(123,188,218,1) 15%, rgba(45,120,181,1) 81%);
-    color: #f0f5f8;
-    font-weight: bold;
-    max-height: 70px;
-    border-radius: 10px;
-  }
-  
+:root{
+  --midnight: #1D3461;
+  --deepsea: #1F487E;
+  --jeans: #376996;
+  --whale: #6290C8;
+  --fog: #829CBC;
+  --cottoncandy: #F7ADE6;
+  --dreamy: #B388EB;
+  --stitch: #8093F1;
+  --pool: #72DDF7;
+  --cream: #F4F4ED;
+}
+
   body {
     font-family: "Inter", sans-serif;
     font-family: "Neuton", serif;
     font-family: "Noto Sans", sans-serif;
-    background: rgb(45,120,181);
-    background: radial-gradient(circle, rgba(45,120,181,1) 15%, rgba(123,188,218,1) 81%);
+    background-color: var(--jeans);
+    color: #1a1f45;
   }
+
+.App nav {
+    display: flex;
+    justify-content:space-between;
+    padding-left: 3%;
+    padding-right: 3%;
+    font-weight: bold;
+    max-height: 70px;
+    align-items: center;
+    background-color: var(--jeans);
+    box-shadow: 0px 10px 25em 0px var(--deepsea);
+    }
+  .App nav h2{
+    cursor: pointer;
+  }
+  .App nav img{
+    width: 32px;
+    height: 32px;
+  }
+  .App nav div{
+    width: 200px;
+    align-items: center;
+  }
+
+
+button{
+  background-color: #ff76a6;
+  border-radius: 14px;
+  color: #f8e7ed;
+  font-size: 1em;
+  font-weight: bold;
+  justify-content: center;
+  padding: 0 1%;
+  border: 0;
+  height: 30px;
+  width: fit-content;
+ }
+button:hover{
+  background-color: #fa76a4;
+  color: #fad0df;
+  border: none;
+  cursor: pointer;
+}
+
+input{
+  height: 30px;
+  background: rgb(255,214,165);
+  border-color: #ffa448;
+  border-width: 2px;
+  border-style: solid;
+  color: #ffa448;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0 1%;
+}
+input:focus{
+  background: rgb(255, 229, 165);
+  border-color: #ffa448;
+  border-style: solid;
+  color: #ffa448;
+  outline-width: 0;
+}
+::placeholder {
+  color: #ffb46b;
+}
