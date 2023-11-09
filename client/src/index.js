@@ -7,6 +7,7 @@ import './style/index.css';
 import App from './components/App';
 import RegistrationForm from './components/RegistrationForm';
 import CurrentWeather from './components/CurrentWeather';
+import LoginForm from './components/LoginForm';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         path: "/current/:cityName",
         element: <CurrentWeather />,
       },
+      {
+        path: "/login",
+        element: <LoginForm />
+      }
     ]
   },
 ]);
